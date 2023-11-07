@@ -1,0 +1,242 @@
+[
+  {
+    "name": "Victor Muñoz",
+    "telefono": "888-555-4444",
+    "correo_electronico": "manuelfjk@gmail.com",
+    "direccion": "Avenida Ficticia 789",
+    "contraseña": "ManuelPass789",
+    "cedula_identidad": "28468565"
+  },
+  {
+    "name": "Lucía Cáceres",
+    "telefono": "777-444-8888",
+    "correo_electronico": "luciacac@yahoo.com",
+    "direccion": "Calle Inventada 456",
+    "contraseña": "LuciaPass456",
+    "cedula_identidad": "64523789"
+  },
+  {
+    "name": "Antonio Juárez",
+    "telefono": "555-222-9999",
+    "correo_electronico": "antoniojuarez@hotmail.com",
+    "direccion": "Barrio Falso 123",
+    "contraseña": "AntonioPass123",
+    "cedula_identidad": "98376554"
+  },
+  {
+    "name": "Maria López",
+    "telefono": "333-666-1111",
+    "correo_electronico": "marialopez@gmail.com",
+    "direccion": "Carrera Inexistente 987",
+    "contraseña": "MariaPass987",
+    "cedula_identidad": "76543210"
+  },
+  {
+    "name": "Andrés Ríos",
+    "telefono": "222-999-7777",
+    "correo_electronico": "andresrios@yahoo.com",
+    "direccion": "Pueblo Irreal 654",
+    "contraseña": "AndresPass654",
+    "cedula_identidad": "10987654"
+  },
+  {
+    "name": "Ana Gutiérrez",
+    "telefono": "111-444-2222",
+    "correo_electronico": "anagutierrez@hotmail.com",
+    "direccion": "Urbanización Ficticia 321",
+    "contraseña": "AnaPass321",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Javier Torres",
+    "telefono": "999-666-3333",
+    "correo_electronico": "javiertorres@gmail.com",
+    "direccion": "Colonia Inventada 789",
+    "contraseña": "JavierPass789",
+    "cedula_identidad": "45678901"
+  },
+  {
+    "name": "Sofía Ramírez",
+    "telefono": "888-555-2222",
+    "correo_electronico": "sofiaramirez@yahoo.com",
+    "direccion": "Avenida Inexistente 456",
+    "contraseña": "SofiaPass456",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Daniel Hernández",
+    "telefono": "777-444-1111",
+    "correo_electronico": "danielhernandez@hotmail.com",
+    "direccion": "Calle Falsa 123",
+    "contraseña": "DanielPass123",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Valeria Navarro",
+    "telefono": "666-333-9999",
+    "correo_electronico": "valerianavarro@gmail.com",
+    "direccion": "Barrio Irreal 789",
+    "contraseña": "ValeriaPass789",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Carlos Silva",
+    "telefono": "555-222-8888",
+    "correo_electronico": "carlossilva@yahoo.com",
+    "direccion": "Carrera Inventada 456",
+    "contraseña": "CarlosPass456",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "María José Soto",
+    "telefono": "444-111-7777",
+    "correo_electronico": "mjsoto@hotmail.com",
+    "direccion": "Pueblo Falso 123",
+    "contraseña": "MariaJosePass123",
+    "cedula_identidad": "45678901"
+  },
+  {
+    "name": "Jorge Mendoza",
+    "telefono": "333-999-6666",
+    "correo_electronico": "jorgemendoza@gmail.com",
+    "direccion": "Urbanización Inexistente 789",
+    "contraseña": "JorgePass789",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Fernanda Castro",
+    "telefono": "222-888-5555",
+    "correo_electronico": "fernandacastro@yahoo.com",
+    "direccion": "Colonia Ficticia 456",
+    "contraseña": "FernandaPass456",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Martín Paredes",
+    "telefono": "111-777-4444",
+    "correo_electronico": "martinparedes@hotmail.com",
+    "direccion": "Avenida Irreal 123",
+    "contraseña": "MartinPass123",
+    "cedula_identidad": "45678901"
+  },
+  {
+    "name": "Carolina Sánchez",
+    "telefono": "999-666-3333",
+    "correo_electronico": "carosanchez@gmail.com",
+    "direccion": "Calle Inventada 789",
+    "contraseña": "CarolinaPass789",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Pedro Ramos",
+    "telefono": "888-555-2222",
+    "correo_electronico": "pedroramos@yahoo.com",
+    "direccion": "Barrio Falso 456",
+    "contraseña": "PedroPass456",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Laura Medina",
+    "telefono": "777-444-1111",
+    "correo_electronico": "lauramedina@hotmail.com",
+    "direccion": "Carrera Inexistente 123",
+    "contraseña": "LauraPass123",
+    "cedula_identidad": "45678901"
+  },
+  {
+    "name": "Ricardo Fernández",
+    "telefono": "666-333-9999",
+    "correo_electronico": "ricardofernandez@gmail.com",
+    "direccion": "Pueblo Inventado 456",
+    "contraseña": "RicardoPass456",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Mariana Puentes",
+    "telefono": "555-222-8888",
+    "correo_electronico": "marianapuentes@yahoo.com",
+    "direccion": "Urbanización Irreal 789",
+    "contraseña": "MarianaPass789",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Juan López",
+    "telefono": "444-111-7777",
+    "correo_electronico": "juanlopez@gmail.com",
+    "direccion": "Colonia Ficticia 456",
+    "contraseña": "JuanPass456",
+    "cedula_identidad": "45678901"
+  },
+  {
+    "name": "Daniela González",
+    "telefono": "333-999-6666",
+    "correo_electronico": "danielagonzalez@hotmail.com",
+    "direccion": "Avenida Inexistente 123",
+    "contraseña": "DanielaPass123",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Diego Herrera",
+    "telefono": "222-888-5555",
+    "correo_electronico": "diegoherrera@yahoo.com",
+    "direccion": "Calle Fantasía 456",
+    "contraseña": "DiegoPass456",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Paula Castro",
+    "telefono": "111-777-4444",
+    "correo_electronico": "paulacastro@gmail.com",
+    "direccion": "Barrio Falso 789",
+    "contraseña": "PaulaPass789",
+    "cedula_identidad": "45678901"
+  },
+  {
+    "name": "Felipe Soto",
+    "telefono": "999-666-3333",
+    "correo_electronico": "felipesoto@hotmail.com",
+    "direccion": "Carrera Inventada 123",
+    "contraseña": "FelipePass123",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Valentina Mendoza",
+    "telefono": "888-555-2222",
+    "correo_electronico": "valentinamendoza@yahoo.com",
+    "direccion": "Pueblo Irreal 456",
+    "contraseña": "ValentinaPass456",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Manuel Torres",
+    "telefono": "777-444-1111",
+    "correo_electronico": "manueltorres@gmail.com",
+    "direccion": "Urbanización Ficticia 789",
+    "contraseña": "ManuelPass789",
+    "cedula_identidad": "45678901"
+  },
+  {
+    "name": "Alejandra Gutiérrez",
+    "telefono": "666-333-9999",
+    "correo_electronico": "alejandragutierrez@hotmail.com",
+    "direccion": "Colonia Inventada 123",
+    "contraseña": "AlejandraPass123",
+    "cedula_identidad": "98765432"
+  },
+  {
+    "name": "Francisco Ramírez",
+    "telefono": "555-222-8888",
+    "correo_electronico": "franciscoramirez@yahoo.com",
+    "direccion": "Calle Inexistente 456",
+    "contraseña": "FranciscoPass456",
+    "cedula_identidad": "12345678"
+  },
+  {
+    "name": "Marina Hernández",
+    "telefono": "444-111-7777",
+    "correo_electronico": "marinahernandez@gmail.com",
+    "direccion": "Barrio Falso 789",
+    "contraseña": "MarinaPass789",
+    "cedula_identidad": "45678901"
+  }
+]

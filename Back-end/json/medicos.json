@@ -1,0 +1,12 @@
+[
+    {
+      "name": "Ana Moya",
+      "especialidad": "Pediatra",
+      "activa": true
+    },
+    {
+      "name": "Luis Martínez",
+      "especialidad": "Otorrinolaringolo",
+      "activa": true
+    }
+]

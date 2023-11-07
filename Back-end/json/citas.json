@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Luis Martínez",
+        "telefono": "777-987-6543",
+        "correo_electronico": "luis@example.com",
+        "direccion": "Calle Ficticia 789",
+        "contraseña": "LuisPass456",
+        "cedula_identidad" : "28468565"
+      },
+      {
+        "name": "Luis Martínez",
+        "telefono": "777-987-6543",
+        "correo_electronico": "luis@example.com",
+        "direccion": "Calle Ficticia 789",
+        "contraseña": "LuisPass456",
+        "cedula_identidad" : "28468565"
+      },
+      {
+        "name": "Luis Martínez",
+        "telefono": "777-987-6543",
+        "correo_electronico": "luis@example.com",
+        "direccion": "Calle Ficticia 789",
+        "contraseña": "LuisPass456",
+        "cedula_identidad" : "28468565"
+      },
+      {
+        "name": "Luis Martínez",
+        "telefono": "777-987-6543",
+        "correo_electronico": "luis@example.com",
+        "direccion": "Calle Ficticia 789",
+        "contraseña": "LuisPass456",
+        "cedula_identidad" : "28468565"
+      },
+      {
+        "name": "Luis Martínez",
+        "telefono": "777-987-6543",
+        "correo_electronico": "luis@example.com",
+        "direccion": "Calle Ficticia 789",
+        "contraseña": "LuisPass456",
+        "cedula_identidad" : "28468565"
+      }
+]
