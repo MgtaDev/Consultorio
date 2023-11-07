@@ -1,0 +1,5 @@
+export const GET_ALL_MEDICOS = 'GET_ALL_MEDICOS'
+export const GET_ALL_CLIENTES = 'GET_ALL_CLIENTES'
+export const GET_CITA_ID = 'GET_CITA_ID'
+export const GET_ALL_CITAS = 'GET_ALL_CITAS'
+export const GET_CITAS_PER_CLIENT = 'GET_CITAS_PER_CLIENT'
