@@ -1,14 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSpring, animated } from 'react-spring';
 
 
 
 function Footer() {
-  const redirigirAlInicio = () => {
-    window.scrollTo(0, 0);
+  function redirigirAlInicio() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
+  const animatedStyle2 = useSpring({
+    from: { opacity: 0, marginTop: 50 },
+    to: { opacity: 1, marginTop: 0 },
+    delay: 1000,
+  });
+  
   return (
-    <><div className='bg-gray-100 border-t px-20 border-gray-300 py-8'>
+    <>
+    <animated.div style={animatedStyle2}>
+    <div className='bg-gray-100 border-t px-20 border-gray-300 py-8'>
       <div className='max-w-screen-xl mx-auto px-4'>
         <div className='flex justify-between items-center'>
           <div className='flex items-center'>
@@ -44,7 +56,7 @@ function Footer() {
             <h2 className='text-lg font-bold mb-4'>Contacto</h2>
             <ul className='space-y-2'>
               <li>
-                <a href='mailto:info@enmable.com' className='text-gray-600 hover:text-gray-900'>info@enmable.com</a>
+                <a href='mailto:info@enmable.com' className='text-gray-600 hover:text-gray-900'>consultory.com</a>
               </li>
               <li onClick={redirigirAlInicio()}>
                 <Link to={'/contact'}>Contactanos</Link>
@@ -59,7 +71,11 @@ function Footer() {
           </div>
         </div>
       </div>
-      </div><div className="bg-gradient-to-r from-green-500 via-blue-100 to-blue-500 h-2 animate-pulse"></div></>
+      </div><div className="bg-gradient-to-r from-green-500 via-blue-100 to-blue-500 h-2 animate-pulse"></div>
+      
+    </animated.div>
+   
+      </>
 
   );
 };

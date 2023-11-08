@@ -22,8 +22,8 @@ const Dashboard = () => {
 },[])
 
 const animatedStyle1 = useSpring({
-  from: { opacity: 0, marginTop: -200 },
-  to: { opacity: 1, marginTop: 0 },
+  from: { opacity: 0, marginLeft: -200 },
+  to: { opacity: 1, marginLeft: 0 },
   delay: 500,
 });
 

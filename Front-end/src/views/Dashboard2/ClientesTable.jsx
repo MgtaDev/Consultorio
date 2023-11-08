@@ -46,8 +46,11 @@ const ClientesTable = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const numberSize = 10;
 
-  const redirigirAlInicio = () => {
-    window.scrollTo(0, 0);
+  function redirigirAlInicio() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
 

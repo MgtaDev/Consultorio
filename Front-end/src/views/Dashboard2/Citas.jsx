@@ -10,6 +10,8 @@ import HistorialCitas from "./HistorialCitas";
 
 
 const CitasTable = () => {
+
+
   const dispatch = useDispatch()
   const stateCitas = useSelector(state => state?.allCitas);
   useEffect(()=>{

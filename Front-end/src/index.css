@@ -17,17 +17,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.spinner {
-  animation: spin 1s linear infinite;
-  border-radius: 50%;
-  border-top-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: rgb(109, 1, 110);
-  border-width: 8px;
-  height: 48px;
-  width: 48px;
-}
 
 @keyframes spin {
   to {

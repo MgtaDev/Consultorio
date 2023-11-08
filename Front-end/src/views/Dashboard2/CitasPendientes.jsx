@@ -5,6 +5,8 @@ import { FaCalendarCheck, FaClock, FaSearch, FaUser } from 'react-icons/fa';
 import { BsCheckCircle, BsFillCalendarFill, BsXCircle } from 'react-icons/bs';
 import axios from 'axios';
 import { useSpring, animated } from 'react-spring';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CitasPendientes = () => {
     const dispatch = useDispatch()
@@ -12,6 +14,20 @@ const CitasPendientes = () => {
     useEffect(()=>{
       dispatch(allCitas())
   },[])
+
+  const showAlert = () => {
+    toast.success('Cita creada correctamente', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const animatedStyle1 = useSpring({
     from: { opacity: 0, marginTop: -200 },
     to: { opacity: 1, marginTop: 0 },
@@ -67,10 +83,32 @@ const CitasPendientes = () => {
     };
 
     const atenderCita = (id, clienteId, medicoId)=> {
-        axios.put(`http://localhost:3001/cita/${id}`, {estado: "cancelada"}) 
+        axios.put(`https://consultorio-production.up.railway.app/cita/${id}`, {estado: "atendida"})
+        .then(()=>
+        toast.success('Cita atendida', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }))
     }
     const cancelarCita = (id, clienteId, medicoId)=> {
-        axios.put(`http://localhost:3001/cita/${id}`, {estado: "atendida"}) 
+      axios.put(`https://consultorio-production.up.railway.app/cita/${id}`, {estado: "cancelada"})
+      .then(()=>
+      toast.success('Cita atendida', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }))
     }
 
   

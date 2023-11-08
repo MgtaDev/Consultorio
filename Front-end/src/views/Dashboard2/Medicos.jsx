@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BsCheckCircle } from 'react-icons/bs';
 import { BsXCircle } from 'react-icons/bs';
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Swal from 'sweetalert2'
 import { allMedicos } from "../../redux/actions";
@@ -11,6 +13,18 @@ import { useSpring, animated } from 'react-spring';
 
 
 const ProductosTable = () => {
+  const showAlert = () => {
+    toast.success('Cambio de estado exitoso', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
   const animatedStyle1 = useSpring({
     from: { opacity: 0, marginTop: -200 },
     to: { opacity: 1, marginTop: 0 },
@@ -137,15 +151,18 @@ const [disableTF, setDisableTF] = useState(true);
               <td className="px-6 text-center py-4">
 
               {medico.activa === true
-              ? <button className="bg-gray-400 text-white font-bold py-2 px-4 rounded hover:bg-orange-800">
+              ? <button onClick={showAlert} className="bg-gray-400 text-white font-bold py-2 px-4 rounded transition duration-500 hover:bg-gray-600">
               Colocar Ausente
               </button>
-              : <button className="bg-green-400 text-white font-bold py-2 px-4 rounded hover:bg-orange-800">
+              : <button onClick={showAlert} className="bg-green-400 text-white font-bold py-2 px-4 rounded transition duration-500 hover:bg-green-600">
               Colocar Atendiendo
               </button>
+          
               }
+             
 
               </td>
+              <ToastContainer/>
             </tr>
           ))}
         </tbody>

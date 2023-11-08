@@ -1,20 +1,25 @@
 import React from 'react'
-import { FaNeuter } from 'react-icons/fa'
+import { FaNeuter, FaArrowDown } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring';
 
 
 const Navbar = () => {
-    const animatedStyle2 = useSpring({
-        from: { opacity: 0, marginTop: 50 },
-        to: { opacity: 1, marginTop: 0 },
-        delay: 1000,
+    const animatedStyle1 = useSpring({
+        from: { opacity: 0, marginLeft: -200 },
+        to: { opacity: 1, marginLeft: 0 },
+        delay: 500,
       });
+      
+      function handleGoToChooseSection() {
+        const chooseSection = document.getElementById('choose-section');
+        chooseSection.scrollIntoView({ behavior: 'smooth' });
+      }
 
     return (
     <>
-    <animated.div style={animatedStyle2}>
-    <div className="bg-gradient-to-r from-green-500 via-blue-100 to-blue-500 h-2 animate-pulse"></div><div className='shadow shadow-lg flex justify-between py-4'>
+    <animated.div style={animatedStyle1}>
+<div className='shadow shadow-lg flex justify-between py-4'>
             {/* Left */}
             <div className='mx-5 flex items-center'>
                 <FaNeuter/>
@@ -22,12 +27,14 @@ const Navbar = () => {
             </div>
             {/* Right */}
             <div className=''>
-                <ul className='flex mx-5'>
-                <Link to={'/'}> <li className='px-3 hover:text-green-400 transition-3s ease-in-out'>Home</li></Link>
-                <Link to={'/'}><li className='px-3 hover:text-green-400 transition-3s ease-in-out'>About</li></Link>
-                <Link to={'/'}> <li className='px-3 hover:text-green-400 transition-3s ease-in-out'>Contact</li></Link>
-                <Link to={'/'}><li className='px-3 hover:text-green-400 transition-3s ease-in-out'>Services</li></Link>
-                   
+                <ul className='flex items-center mx-5'>
+                <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Home</li></Link>
+                <li onClick={handleGoToChooseSection} className='px-3 transition duration-500  hover:text-green-400 transition-3s cursor-pointer ease-in-out'>Why choose us!</li>
+                <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>About</li></Link>
+                <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Contact</li></Link>
+                <Link to={'/'}><li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Services</li></Link>
+                <Link to={'/'}><li className='px-3 bg-green-700 rounded-full py-1 text-white transition duration-300  hover:bg-green-800 transition-3s ease-in-out'>Book Online</li></Link>
+                
                 </ul>
             </div>
         </div>
