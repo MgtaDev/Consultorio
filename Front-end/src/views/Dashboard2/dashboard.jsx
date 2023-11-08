@@ -7,6 +7,7 @@ import CitasTable from "./Citas";
 import { useDispatch, useSelector } from "react-redux";
 import { allCitas, allClientes, allMedicos } from "../../redux/actions";
 import FormCitas from "./FormCitas";
+import { useSpring, animated } from 'react-spring';
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,18 @@ const Dashboard = () => {
     dispatch(allClientes())
     dispatch(allCitas())
 },[])
+
+const animatedStyle1 = useSpring({
+  from: { opacity: 0, marginTop: -200 },
+  to: { opacity: 1, marginTop: 0 },
+  delay: 500,
+});
+
+const animatedStyle2 = useSpring({
+  from: { opacity: 0, marginTop: 50 },
+  to: { opacity: 1, marginTop: 0 },
+  delay: 1000,
+});
 
 
   const [navStyles, setNavStyles] = useState([
@@ -71,8 +84,10 @@ const Dashboard = () => {
 
 
   return (
+    
     <div className="flex pt-0.5  pb-60">
-      <nav className=" w-20 px-5 flex flex-col justify-start items-stretch border-r border-gray-200">
+     <animated.div style={animatedStyle1}>
+ <nav className=" w-20 px-5 flex flex-col justify-start items-stretch border-r border-gray-200">
         <div className="flex justify-center items-center py-4">
         <FaNeuter size={40} className="text-gray-500" />
         </div>
@@ -102,6 +117,7 @@ const Dashboard = () => {
          
         </ul>
       </nav>
+    </animated.div>
       <div className="flex-grow bg-gray-50">
         {Citas ? <CitasTable /> : ""}
         {Clientes ? <ClientesTable /> : ""}
