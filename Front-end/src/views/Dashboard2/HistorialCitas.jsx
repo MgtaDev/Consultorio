@@ -48,6 +48,13 @@ const HistorialCitas = () => {
       setCurrentPage(currentPage - 1 );
       setSelectedPage(selectedPage - 1);
     };
+
+    function redirigirAlInicio() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
     
     const handleNextPage = () => {
       setCurrentPage(currentPage + 1 );
@@ -71,9 +78,7 @@ const HistorialCitas = () => {
     };
   
    console.log(currentSales)
-  const redirigirAlInicio = () => {
-    window.scrollTo(0, 0);
-  }
+
 
   return (
    
@@ -127,6 +132,53 @@ const HistorialCitas = () => {
         </tbody>
       </table> 
       : <h2 className="text-lg text-gray-500 flex justify-center py-10 ">No hay citas en estos momentos</h2>}
+ {
+      stateCitas?.length > 9 ? (
+    <div className="flex justify-center py-8">
+      <button
+        onClick={() => {
+          if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            setSelectedPage(selectedPage - 1);
+            redirigirAlInicio()
+          }
+        }}
+        className="border-solid rounded-full w-10 h-10 rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 "
+      >
+        {"<"}
+      </button>
+      {pageNumbers.map(({ number, selected }) => (
+        <button
+          key={number}
+          onClick={() => {
+            setCurrentPage(number);
+            setSelectedPage(number);
+            redirigirAlInicio()
+          }}
+        className={`border-solid rounded-full w-10 h-10 border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:white focus:border-white ${
+        selected ? "bg-gray-400 text-white" : ""
+          }`}
+          >
+            
+          {number}
+        </button>
+      ))}
+      <button
+        onClick={() => {
+          if (currentPage < Math.ceil(currentSales?.length / itemsPerPage)) {
+            setCurrentPage(currentPage + 1);
+            setSelectedPage(selectedPage + 1);
+            redirigirAlInicio()
+
+          }
+        }}
+        className="border-solid rounded-full w-10 h-10  rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
+        >
+        {">"}
+      </button>
+    </div>
+      ) : ''
+    }
   </animated.div>
 
   {selectedVenta && (

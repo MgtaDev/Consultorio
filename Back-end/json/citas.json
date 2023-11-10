@@ -1,42 +1,36 @@
 [
-    {
-        "name": "Luis Martínez",
-        "telefono": "777-987-6543",
-        "correo_electronico": "luis@example.com",
-        "direccion": "Calle Ficticia 789",
-        "contraseña": "LuisPass456",
-        "cedula_identidad" : "28468565"
+    
+      {
+	"fecha": "11/10/2001",
+	"descripcion": "Nueva descripcion",
+	"estado": "pendiente",
+  "cliente_name": "Luis martinez",
+  "medico_name": "Dr Daniel",
+	"clienteId": 2,
+	"medicoId": 2,
+	"hora": null
+
       },
       {
-        "name": "Luis Martínez",
-        "telefono": "777-987-6543",
-        "correo_electronico": "luis@example.com",
-        "direccion": "Calle Ficticia 789",
-        "contraseña": "LuisPass456",
-        "cedula_identidad" : "28468565"
-      },
-      {
-        "name": "Luis Martínez",
-        "telefono": "777-987-6543",
-        "correo_electronico": "luis@example.com",
-        "direccion": "Calle Ficticia 789",
-        "contraseña": "LuisPass456",
-        "cedula_identidad" : "28468565"
-      },
-      {
-        "name": "Luis Martínez",
-        "telefono": "777-987-6543",
-        "correo_electronico": "luis@example.com",
-        "direccion": "Calle Ficticia 789",
-        "contraseña": "LuisPass456",
-        "cedula_identidad" : "28468565"
-      },
-      {
-        "name": "Luis Martínez",
-        "telefono": "777-987-6543",
-        "correo_electronico": "luis@example.com",
-        "direccion": "Calle Ficticia 789",
-        "contraseña": "LuisPass456",
-        "cedula_identidad" : "28468565"
-      }
+        "fecha": "11/10/2001",
+        "descripcion": "Nueva descripcion",
+        "estado": "pendiente",
+        "cliente_name": "Luis martinez",
+        "medico_name": "Dr Daniel",
+        "clienteId": 2,
+        "medicoId": 2,
+        "hora": null
+      
+            },
+            {
+              "fecha": "11/10/2001",
+              "descripcion": "Nueva descripcion",
+              "estado": "pendiente",
+              "cliente_name": "Luis martinez",
+              "medico_name": "Dr Daniel",
+              "clienteId": 2,
+              "medicoId": 2,
+              "hora": null
+            
+                  }
 ]

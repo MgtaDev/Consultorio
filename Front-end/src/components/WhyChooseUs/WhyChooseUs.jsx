@@ -56,6 +56,8 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </section>
+      <div id='choose-section' className='border border-200 mx-20'></div>
+
     </animated.div>
   );
 };

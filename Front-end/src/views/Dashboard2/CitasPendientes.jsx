@@ -15,6 +15,13 @@ const CitasPendientes = () => {
       dispatch(allCitas())
   },[])
 
+  function redirigirAlInicio() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
   const showAlert = () => {
     toast.success('Cita creada correctamente', {
       position: "top-right",
@@ -124,7 +131,7 @@ const CitasPendientes = () => {
 <animated.div style={animatedStyle2}>
 <h4 className=" text-sm text-gray-500 px-12 ">Citas pendientes: ({stateCitas?.length})</h4>
 <div className="flex justify-center flex-wrap gap-10 mx-10 my-5">
- {currentSales?.length !== 2 ? (
+ {currentSales?.length > 0 ? (
      currentSales?.map((cita)=>(
       
 <div key={cita.id}  className="shadow-lg px-10 py-10 rounded-lg border border-gray">
@@ -154,15 +161,16 @@ const CitasPendientes = () => {
 ) :  <h2 className="text-lg text-gray-600 flex justify-center py-10 ">No hay citas en estos momentos</h2>}
 
 </div>
-</animated.div>
 {
-      currentSales?.length > 9 ? (
+      stateCitas?.length > 9 ? (
     <div className="flex justify-center py-8">
       <button
         onClick={() => {
           if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
             setSelectedPage(selectedPage - 1);
+            redirigirAlInicio()
+
           }
         }}
         className="border-solid rounded-full w-10 h-10 rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 "
@@ -175,6 +183,7 @@ const CitasPendientes = () => {
           onClick={() => {
             setCurrentPage(number);
             setSelectedPage(number);
+            redirigirAlInicio()
           }}
         className={`border-solid rounded-full w-10 h-10 border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:white focus:border-white ${
         selected ? "bg-gray-400 text-white" : ""
@@ -189,6 +198,8 @@ const CitasPendientes = () => {
           if (currentPage < Math.ceil(currentSales?.length / itemsPerPage)) {
             setCurrentPage(currentPage + 1);
             setSelectedPage(selectedPage + 1);
+            redirigirAlInicio()
+
           }
         }}
         className="border-solid rounded-full w-10 h-10  rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
@@ -198,6 +209,8 @@ const CitasPendientes = () => {
     </div>
       ) : ''
     }
+</animated.div>
+
 
 
 
