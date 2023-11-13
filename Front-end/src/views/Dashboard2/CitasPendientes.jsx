@@ -90,7 +90,7 @@ const CitasPendientes = () => {
     };
 
     const atenderCita = (id, clienteId, medicoId)=> {
-        axios.put(`https://consultorio-production.up.railway.app/cita/${id}`, {estado: "atendida"})
+        axios.put(`http://localhost:3001/cita/${id}`, {estado: "atendida"})
         .then(()=>
         toast.success('Cita atendida', {
           position: "top-right",
@@ -102,9 +102,11 @@ const CitasPendientes = () => {
           progress: undefined,
           theme: "light",
         }))
+        .then(()=> allCitas())
+        .catch(error => error.message)
     }
     const cancelarCita = (id, clienteId, medicoId)=> {
-      axios.put(`https://consultorio-production.up.railway.app/cita/${id}`, {estado: "cancelada"})
+      axios.put(`http://localhost:3001/cita/${id}`, {estado: "cancelada"})
       .then(()=>
       toast.success('Cita atendida', {
         position: "top-right",
@@ -116,6 +118,8 @@ const CitasPendientes = () => {
         progress: undefined,
         theme: "light",
       }))
+      .then(()=> allCitas())
+      .catch(error => error.message)
     }
 
   
@@ -158,7 +162,7 @@ const CitasPendientes = () => {
          </div>
          
   ))
-) :  <h2 className="text-lg text-gray-600 flex justify-center py-10 ">No hay citas en estos momentos</h2>}
+  ) :  <h2 className="text-lg text-gray-600 flex justify-center py-10 ">No hay citas en estos momentos</h2>}
 
 </div>
 {

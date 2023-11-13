@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUserCircle, FaCalendarAlt, FaArrowLeft } from 'react-icons/fa';
 import { BsCheckCircle } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,9 +8,33 @@ import axios from 'axios';
 import { citasPerCLiente } from '../../redux/actions';
 
 const Detail = ({setHistorial, setDetalle, id, name, correo, cedula}) => {
+    function redirigirAlInicio() {
+        window.scrollTo({
+          top: 10,
+          behavior: 'smooth'
+        });
+      }
+    
     const dispatch = useDispatch()
-   
     const userCitas = useSelector(state => state.allCitas)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [selectedPage, setSelectedPage] = useState(1)
+    const [itemsPerPage] = useState(9)
+    const lastSale = currentPage * itemsPerPage;
+    const firtsSale = lastSale - itemsPerPage
+    const currentSales = userCitas.slice(firtsSale,lastSale)
+    const [pageNumber, setPageNumber] = useState(0);
+    
+    const generatePageNumbers = () => {
+      const pageNumbers = [];
+      for (let i = 1; i <= Math.ceil(userCitas?.length / itemsPerPage); i++) {
+      pageNumbers.push({number:i, selected: i === selectedPage});
+    }
+    return pageNumbers;
+  };
+  const pageNumbers = generatePageNumbers();
+   
+    
     const  navigate = useNavigate()
     const  location = useLocation()
     const animatedStyle1 = useSpring({
@@ -110,7 +134,7 @@ const Detail = ({setHistorial, setDetalle, id, name, correo, cedula}) => {
 </tr>
 </thead>
 <tbody className="divide-y divide-gray-300">
-{userCitas ? userCitas?.map(cita => (
+{userCitas ? currentSales?.map(cita => (
   <tr className="text-gray-900" key={cita.id}>
     <td className="w-1/4 py-3 px-4 align-middle text-center">{cita?.fecha}</td>
     <td className="w-1/4 py-3 px-4 align-middle text-center">{cita?.hora}</td>
@@ -123,6 +147,53 @@ const Detail = ({setHistorial, setDetalle, id, name, correo, cedula}) => {
 }
 
 </div>
+     {/* Pagination Buttons */}
+     {
+            userCitas?.length > 10 && (
+          <div className="flex justify-center py-8">
+            <button
+              onClick={() => {
+                if (currentPage > 1) {
+                  setCurrentPage(currentPage - 1);
+                  setSelectedPage(selectedPage - 1);
+               
+                }
+              }}
+              className="border-solid rounded-full w-10 h-10 rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 "
+            >
+              {"<"}
+            </button>
+            {pageNumbers.map(({ number, selected }) => (
+              <button
+                key={number}
+                onClick={() => {
+                  setCurrentPage(number);
+                  setSelectedPage(number);
+               
+                }}
+              className={`border-solid rounded-full w-10 h-10 border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:white focus:border-white ${
+              selected ? "bg-gray-400 text-white" : ""
+                }`}
+                >
+                  
+                {number}
+              </button>
+            ))}
+            <button
+              onClick={() => {
+                if (currentPage < Math.ceil(currentSales?.length / itemsPerPage)) {
+                  setCurrentPage(currentPage + 1);
+                  setSelectedPage(selectedPage + 1);
+              
+                }
+              }}
+              className="border-solid rounded-full w-10 h-10  rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
+              >
+              {">"}
+            </button>
+          </div>
+            )
+          }
 </section>
 </div>
 </div>

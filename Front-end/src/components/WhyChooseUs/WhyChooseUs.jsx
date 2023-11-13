@@ -20,7 +20,7 @@ const WhyChooseUs = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-wide uppercase text-gray-800">Por que escojernos?</h2>
+          <h2 className="text-3xl font-bold tracking-wide uppercase text-gray-800">Por que escojernos?</h2>
             <p className="mt-4 text-xl text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at lacus quis eros varius tristique. Cras et eleifend sapien.</p>
           </div>
           <div className="flex flex-wrap items-center justify-center">

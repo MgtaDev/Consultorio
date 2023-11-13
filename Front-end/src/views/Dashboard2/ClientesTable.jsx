@@ -111,12 +111,19 @@ console.log(Historial);
         <animated.div style={animatedStyle1}>
         <div className="flex items-center gap-5">
         <h2 className=" text-[50px] text-gray-500 m-5 ">Historial de clientes</h2>
-        <div 
-        className=" flex bg-gray-100 rounded-lg w-[500px] px-5 py-1 border border-200 justify-end">
+        <input
+      placeholder="Busca una cita aqui"
+        className=" flex bg-gray-100 rounded-lg w-[500px] px-5 py-1 border border-200 ">
+      </input>
         <FaSearch className="text-gray-500 cursor-pointer "/> 
-        </div>
-        <select className="w-20 bg-gray-100 rounded-lg border border-200" name="" id=""></select>
-        <select className="w-20 bg-gray-100 rounded-lg border border-200" name="" id=""></select>
+
+
+<select
+  className="w-20 bg-gray-100 border border-200 text-gray-500 text-sm">
+  <option value="todos">Todos</option>
+  <option value="atendiendo">Atendiendo</option>
+  <option value="ausente">Ausente</option>
+</select>
 
         </div>
         </animated.div>
@@ -130,36 +137,25 @@ console.log(Historial);
                 <th className="border-0 px-6 py-4 font-bold">Correo Electronico</th>
                 <th className="border-0 px-6 py-4 font-bold">Direccion</th>
                 <th className="border-0 px-6 py-4 font-bold">Estado</th>
-                <th className="border-0 px-6 py-4 font-bold">Banear</th>
+               
               </tr>
             </thead>
             <tbody className="text-gray-600 text-sm font-light">
               {currentClient?.map((client) => (
                 <tr  key={client.id} className="border-t">
                   <td className="px-6 text-center capitalize py-10">{client?.id}</td>
-                  <td onClick={()=> verDetalle(client.id, client.name, client.cedula_identidad, client.correo_electronico)} className="px-6 cursor-pointer text-center py-10">{client?.name}</td>
+                  <td onClick={()=> verDetalle(client.id, client.name, client.cedula_identidad, client.correo_electronico)} className="px-6 cursor-pointer text-center hover:text-green-400 transition-300 py-10">{client?.name}</td>
                   <td className="px-6 text-center py-10">{client?.correo_electronico}</td>
                   <td className="px-6 text-center py-10">{client?.direccion}</td>
-                  <td className="px-6 l text-center py-10">
-                  {client?.activa === true ? (
-                    <div className="d-flex align-items-center">
-                      <span>Activo</span>
-                      <BsCheckCircle className="relative bottom-4" />
-                    </div>
-                  ) : (
-                    <>
-                      <span className="ml-3">Baneado</span>
-                      <BsXCircle className="mr-5 relative bottom-4" />
-                  </>
-                  )}</td>
+                
                  
                 
                   {
                     client?.correo_electronico !== 'passantinodev@gmail.com' 
                     ? <td className="px-6 text-center py-4">
                     {client?.activa === true
-                    ? <button  className="bg-gray-400 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Banear</button>
-                    : <button  className="bg-green-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Quitar baneo</button>
+                    ? <button  className="bg-gray-400 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Eliminar</button>
+                    : ''
                     }
                     </td>
                     :''

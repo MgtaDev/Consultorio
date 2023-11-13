@@ -4,6 +4,9 @@ import { allCitas } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { useSpring, animated } from 'react-spring';
 import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs';
+import Loaction from '../../components/Location/location';
+import ReviewSlider from '../../components/ReviewsSlider/reviewsSlider';
+import Contact from '../../components/Contact/contact';
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -53,7 +56,11 @@ const Landing = () => {
       </animated.div>
       <div className='my-20'>
         <WhyChooseUs />
+        <ReviewSlider/>
+        <Loaction/>
+        <Contact/>
       </div>
+      
     </>
   );
 };

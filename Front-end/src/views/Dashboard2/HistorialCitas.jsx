@@ -91,13 +91,19 @@ const HistorialCitas = () => {
         className=" flex bg-gray-100 rounded-lg w-[500px] px-5 py-1 border border-200 justify-end">
       </input>
         <FaSearch className="text-gray-500 cursor-pointer "/> 
-        <select className="w-20 bg-gray-100  border border-200" name="" id="">
-        <option value="Filtrar por estado">Estado</option>
-        </select>
-      
-        <select className="w-20 bg-gray-100  border border-200" name="" id="">
-        <option value="Filtrar por fecha">Fecha</option>
-         </select>
+        <select
+  className="w-20 bg-gray-100 border border-200 text-gray-500 text-sm">
+  <option value="todos">Todos</option>
+  <option value="atendiendo">Atendiendo</option>
+  <option value="ausente">Ausente</option>
+</select> 
+
+<select
+  className="w-20 bg-gray-100 border border-200 text-gray-500 text-sm">
+  <option value="todos">Todos</option>
+  <option value="atendiendo">Atendiendo</option>
+  <option value="ausente">Ausente</option>
+</select>
 
         </div>
         </animated.div>

@@ -13,18 +13,43 @@ import { useSpring, animated } from 'react-spring';
 
 
 const ProductosTable = () => {
-  const showAlert = () => {
-    toast.success('Cambio de estado exitoso', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+  const activarMedico = (medicoId) => {
+    axios.put(`http://localhost:3001/medico/activate/${medicoId}`)
+    .then(()=>{
+      toast.success('Cambio de estado exitoso', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    })
+    .then(()=>  dispatch(allMedicos()) )
+    .catch(error => error.message)
   };
+
+  const ausentarMedico = (medicoId) => {
+    axios.put(`http://localhost:3001/medico/delete/${medicoId}`)
+    .then(()=>{
+      toast.success('Cambio de estado exitoso', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    })
+    .then(()=>  dispatch(allMedicos()) )
+    .catch(error => error.message)
+ 
+  };
+
   const animatedStyle1 = useSpring({
     from: { opacity: 0, marginTop: -200 },
     to: { opacity: 1, marginTop: 0 },
@@ -104,8 +129,19 @@ const [disableTF, setDisableTF] = useState(true);
     <animated.div style={animatedStyle1}>
     <div className="flex items-center gap-5">
       <h2 className=" text-[50px] text-gray-500 m-5 ">Medicos</h2>
-        <select className="w-20 bg-gray-100  border border-200" name="" id=""></select>
-        <select className="w-20 bg-gray-100  border border-200" name="" id=""></select>
+
+        <select
+  className="w-20 bg-gray-100 border border-200 text-gray-500 text-sm"
+  // value={filtroEstadoSeleccionado}
+  // onChange={(e) => {
+  //   setFiltroEstadoSeleccionado(e.target.value);
+  //   dispatch(aplicarFiltroEstado(e.target.value));
+  // }}
+>
+  <option value="todos">Todos</option>
+  <option value="atendiendo">Atendiendo</option>
+  <option value="ausente">Ausente</option>
+</select>
 
         </div>
     </animated.div>
@@ -151,10 +187,10 @@ const [disableTF, setDisableTF] = useState(true);
               <td className="px-6 text-center py-4">
 
               {medico.activa === true
-              ? <button onClick={showAlert} className="bg-gray-400 text-white font-bold py-2 px-4 rounded transition duration-500 hover:bg-gray-600">
+              ? <button onClick={()=> ausentarMedico(medico.id.split('-')[1])} className="bg-gray-400 text-white font-bold py-2 px-4 rounded transition duration-500 hover:bg-gray-600">
               Colocar Ausente
               </button>
-              : <button onClick={showAlert} className="bg-green-400 text-white font-bold py-2 px-4 rounded transition duration-500 hover:bg-green-600">
+              : <button onClick={()=> activarMedico(medico.id.split('-')[1])} className="bg-green-400 text-white font-bold py-2 px-4 rounded transition duration-500 hover:bg-green-600">
               Colocar Atendiendo
               </button>
           

@@ -23,8 +23,8 @@ function Footer() {
     <div class="bg-gray-100 py-12">
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-      <div class="grid grid-cols-2 gap-8 xl:col-span-2">
-        <div class="md:grid md:grid-cols-2 md:gap-8">
+      <div class="grid grid-cols-2 gap-8 ml-10 xl:col-span-2">
+        <div class="md:grid md:grid-cols-2  md:gap-8">
           <div>
             <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase mb-4">Dirección</h4>
             <p class="mt-0 mb-4 text-gray-500">Calle 53 # 34-206</p>
@@ -45,7 +45,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div class="mt-8 xl:mt-0">
+      <div class="mt-8 xl:mt-0 ml-40">
         <h4 class="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase mb-4">Redes sociales</h4>
         <div class="flex space-x-6">
           <a href="#" class="text-gray-500 hover:text-gray-600">
