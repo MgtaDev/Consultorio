@@ -23,3 +23,25 @@ code {
     transform: rotate(360deg);
   }
 } 
+
+.hero-image {
+  background-image: url('./assets/smiling.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 110vh; /* Adjust this value to fit your design */
+}
+.hero-wrapper::before { /* add ::before pseudo element to create a dimmed background */
+  content: ""; /* empty content */
+  position: absolute; /* position absolute */
+  top: 0; /* top position */
+  left: 0; /* left position */
+  width: 100%; /* width of the entire screen */
+  height: 100%; /* height of the entire screen */
+  background: url('./assets//smiling.jpg'); /* replace hero.jpg with your actual image */ /* background image of the ::before pseudo element */
+  filter: brightness(0.5); /* dim the brightness to half */ /* apply brightness filter to ::before pseudo element */ } 
+
+  
+  .line-height {
+    line-height: 3rem;
+  }

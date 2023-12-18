@@ -19,21 +19,21 @@ const Navbar = () => {
     return (
     <>
     <animated.div style={animatedStyle1}>
-<div className='shadow shadow-lg flex justify-between py-4'>
+<div className='shadow shadow-lg flex justify-between py-6'>
             {/* Left */}
             <div className='mx-5 flex items-center'>
                 <FaNeuter/>
-                <h2 className='mx-1'>DentalCare</h2>
+                <h2 className='mx-1 text-2xl'>DentalCare</h2>
             </div>
             {/* Right */}
             <div className=''>
                 <ul className='flex items-center mx-5'>
                 <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Home</li></Link>
-                <li onClick={handleGoToChooseSection} className='px-3 transition duration-500  hover:text-green-400 transition-3s cursor-pointer ease-in-out'>Why choose us!</li>
-                <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>About</li></Link>
-                <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Contact</li></Link>
-                <Link to={'/'}><li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Services</li></Link>
-                <Link to={'/'}><li className='px-3 bg-green-700 rounded-full py-1 text-white transition duration-300  hover:bg-green-800 transition-3s ease-in-out'>Book Online</li></Link>
+                <li onClick={handleGoToChooseSection} className='px-3 transition duration-500  hover:text-green-400 transition-3s cursor-pointer ease-in-out'>Por que escojernos?</li>
+                <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Acerca de</li></Link>
+                <Link to={'/'}> <li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Contacto</li></Link>
+                <Link to={'/'}><li className='px-3 transition duration-500  hover:text-green-400 transition-3s ease-in-out'>Servicios</li></Link>
+                <Link to={'/'}><li className='px-3 bg-green-700 rounded-full py-1 text-white transition duration-300  hover:bg-green-800 transition-3s ease-in-out'>Haz tu cita</li></Link>
                 
                 </ul>
             </div>
