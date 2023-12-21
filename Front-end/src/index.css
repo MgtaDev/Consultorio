@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  background-color: rgb(249, 249, 249);
+  background-color: rgba(249, 249, 249, 0.444);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -44,4 +44,14 @@ code {
   
   .line-height {
     line-height: 3rem;
+  }
+
+  .elemento {
+    overflow-y:scroll;
+  }
+  .radiant{
+    background-color: rgb(89, 203, 230);
+  }
+  .lightBlue{
+    background-color: rgb(244,244,245);
   }
