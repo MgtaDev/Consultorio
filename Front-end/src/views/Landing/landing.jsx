@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { allCitas } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
@@ -21,6 +21,10 @@ const Landing = () => {
     to: { opacity: 1, marginLeft: 0 },
     delay: 500,
   });
+
+  const [User, setUser] = useState({
+    
+  })
 
   return (
     <>

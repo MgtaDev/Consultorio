@@ -81,7 +81,7 @@ const BookingDetails = () => {
 
             </div>
             <div className='flex justify-center pl-20'>
-            <button className='radiant text-white px-2 py-2 rounded-lg my-2 font-bold'>Reservar Cita</button>
+            <button onClick={()=> navigate('/')} className='radiant text-white px-2 py-2 rounded-lg my-2 font-bold'>Reservar Cita</button>
             </div>
 
             </div>

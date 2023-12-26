@@ -1,12 +1,17 @@
 [
     {
       "name": "Ana Moya",
-      "especialidad": "Pediatra",
+      "especialidad": "Higienista",
       "activa": true
     },
     {
-      "name": "Luis Martínez",
-      "especialidad": "Otorrinolaringolo",
+      "name": "Jose Rodriguez",
+      "especialidad": "Higienista",
+      "activa": true
+    },
+    {
+      "name": "Christian Molina",
+      "especialidad": "Higienista",
       "activa": true
     }
 ]

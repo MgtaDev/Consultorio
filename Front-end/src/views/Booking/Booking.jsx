@@ -80,7 +80,7 @@ const Booking = () => {
         }
      
         <animated.div style={animatedStyle3}> 
-        <div className='text-center mt-[50%]'>
+        <div className='text-center mt-[20%]'>
         <h3 className='text-md text-gray-500'>Designed By PassantinoDev</h3>
         <p className='text-xs text-gray-500'>Powered by React. @2023</p>
         </div>

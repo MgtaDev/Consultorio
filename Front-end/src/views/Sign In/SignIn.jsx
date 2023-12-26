@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { firebaseAuth } from '../../utils/firebase-config';
 import { useNavigate } from 'react-router-dom';
 import googleLogo from '../../assets/google-logo.png'
@@ -7,7 +7,9 @@ import githubLogo from '../../assets/github-logo.png'
 import logo from '../../assets/logo.png'
 import { useSpring, animated } from 'react-spring'
 import { ToastContainer, toast } from 'react-toastify';
+import img from '../../assets/od.jpeg'
 import 'react-toastify/dist/ReactToastify.css';;
+//Importamos GoogleAuthProvider de 'firebase/auth' y signInWithPopup para mostrar ventana de seleccion de cuenta al usuario 
 
 
 
@@ -26,25 +28,30 @@ const animatedStyle2 = useSpring({
   delay: 500,
 });
 
-const handleSignIn = async () => {
+
+const registrarUsuario = async () => {
+  const { email, password } = formValues;
   try {
-    const { email, password } = formValues;
-    await createUserWithEmailAndPassword(firebaseAuth, email, password).then(()=>{
-      toast.success('Registrado exitosamente', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    })
+    const infoUsuario = await createUserWithEmailAndPassword(firebaseAuth, email, password)
+    .then((usuarioFirebase) => {
+      return usuarioFirebase
+      }).then(()=>{
+        toast.success('Registrado exitosamente', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      })
   } catch (error) {
     console.log(error);
   }
 };
+
 
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
@@ -56,6 +63,57 @@ const handleSignIn = async () => {
     password: "",
   });
   console.log(formValues);
+
+  const loginWithGoogle = () => {
+    const googleProvider = new GoogleAuthProvider()
+    signInWithPopup(firebaseAuth, googleProvider)
+    }
+
+    const loginWithGithub = () => {
+      const githubProvider = new GithubAuthProvider()
+      signInWithPopup(firebaseAuth, githubProvider)
+      }
+  
+
+  const handleGoogleSignIn = async()=>{
+    try{
+    await loginWithGoogle().then(()=>{
+      toast.success('Registrado exitosamente', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    })
+    }
+    catch(error){
+    console.log(error.message)
+    }
+  }
+
+  const handleGithubSignIn = async()=>{
+    try{
+    await loginWithGithub().then(()=>{
+      toast.success('Registrado exitosamente', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    })
+    }
+    catch(error){
+    console.log(error.message)
+    }
+  }
 
   return (
     <div className="grid grid-cols-12 bg-white">
@@ -86,14 +144,14 @@ const handleSignIn = async () => {
 
 
     <div id='bottom' className='text-center mb-[11.2%] mt-[4%]'>
-    <button onClick={handleSignIn} className='bg-green-400 hover:bg-green-600 transition duration-1s cursor-pointer ease-in-out text-white rounded-xl px-3 py-2 mb-3 font-medium'>Crear Cuenta</button>
+    <button onClick={registrarUsuario} className='bg-green-400 hover:bg-green-600 transition duration-1s cursor-pointer ease-in-out text-white rounded-xl px-3 py-2 mb-3 font-medium'>Crear Cuenta</button>
     <ToastContainer/>
     <div className='flex justify-center'>
-    <button className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 mr-4 rounded-full'>
+    <button  onClick={()=>handleGoogleSignIn()} className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 mr-4 rounded-full'>
       <img src={googleLogo} className='w-5 mx-1' alt="" />
       Inicia sesion con Google
       </button>
-    <button className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 rounded-full'>
+    <button onClick={()=>handleGithubSignIn()}  className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 rounded-full'>
       <img src={githubLogo} className='w-5 mx-1' alt="" />
       Inicia sesion con Github
       </button>
@@ -113,11 +171,10 @@ const handleSignIn = async () => {
     </div>
 
       {/* Welcome to*/}
-    <div className="col-span-6 bg-green-400 ">
-      <animated.div style={animatedStyle2} className='flex justify-center'>
-        <div className='rounded-xl mt-20 px-20 py-40 bg-[#f9f9f971]'>
-      <img src={logo} alt="Foto de ejemplo" className="w-[300px] py-8 rounded-full  " />
-        </div> 
+    <div className="col-span-6 ">
+      <animated.div style={animatedStyle2} className='flex h-[100%] justify-center'>
+      <img src={img} alt="Foto de ejemplo" className="w-full h-[100%]  " />
+       
       </animated.div>
     </div>
   </div>
