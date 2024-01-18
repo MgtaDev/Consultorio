@@ -1,19 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import maps from '../../assets/maps.png'
 import logo from '../../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring';
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../../utils/firebase-config';
+import UserContext from '../../context/UserContext';
+import  CitaContext  from '../../context/CitaContext';
 
 
-const Booking = () => {
-
+const Booking = ({setCita}) => {
+    const { User } = useContext(UserContext) 
     const [showSecondQuestion, setshowSecondQuestion] = useState(false)
-    
+    const { Cita } = useContext(CitaContext) 
+    console.log(Cita);
+   
+
     const navigate = useNavigate()
-    const changeQuestionState1 = ()=> {
+    const changeQuestionState1 = (tipo)=> {
         setshowSecondQuestion(true)
+        setCita({
+       ...Cita,
+       tipo_cita: tipo
+        })
     }
   
     const goSignIn = ()=> {
@@ -57,8 +66,8 @@ const Booking = () => {
         <div className='flex flex-col mt-40'>
         <h2 className='text-2xl mx-20 text-gray-700 font-bold'>Que tipo de cita desea realizar?</h2>
         <div className=' my-4 text-center'>
-        <button onClick={ ()=>changeQuestionState1()} className='bg-gray-200 rounded-md px-2 font-semibold text-lg py-3 w-[80%]'>Nuevo Paciente / Revision</button>
-        <button onClick={ ()=>changeQuestionState1()} className='bg-gray-200 rounded-md mt-3  font-semibold text-lg px-2 py-3 w-[80%]'>Antiguo paciente / Limpieza</button>
+        <button name='revision' onClick={ (e)=>changeQuestionState1(e.target.name)} className='bg-gray-200 rounded-md px-2 font-semibold text-lg py-3 w-[80%]'>Nuevo Paciente / Revision</button>
+        <button name='limpieza' onClick={ (e)=>changeQuestionState1(e.target.name)} className='bg-gray-200 rounded-md mt-3  font-semibold text-lg px-2 py-3 w-[80%]'>Antiguo paciente / Limpieza</button>
         </div>
         </div>
         </animated.div>
@@ -70,8 +79,8 @@ const Booking = () => {
                 <div className='flex flex-col mt-10'>
                 <h2 className='text-2xl mx-20 text-gray-700 font-bold'>¿Es un paciente nuevo o existente?</h2>
                 <div className=' my-4 text-center'>
-                <button onClick={()=> goSignIn()} className='bg-gray-200 rounded-md px-2 font-semibold text-lg py-3 w-[80%]'>Nuevo</button>
-                <button onClick={()=> goLogIn()} className='bg-gray-200 rounded-md mt-3  font-semibold text-lg px-2 py-3 w-[80%]'>Existente</button>
+                <button onClick={()=> !User?.rol ? goSignIn() : navigate('/booking/choosing')} className='bg-gray-200 rounded-md px-2 font-semibold text-lg py-3 w-[80%]'>Nuevo</button>
+                <button onClick={()=> !User?.rol ? goLogIn() : navigate('/booking/choosing')} className='bg-gray-200 rounded-md mt-3  font-semibold text-lg px-2 py-3 w-[80%]'>Existente</button>
                 </div>
                 </div>
                  </animated.div>

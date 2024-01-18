@@ -14,8 +14,6 @@ module.exports = async (medicoId) => {
 
     // Actualizar la propiedad activa a false
     await medico.update({ activa: false });
-
-    medico.dataValues.id = `medico-${medico.dataValues.id}`;
     // Devolver el cliente actualizado
     return medico;
   } catch (error) {

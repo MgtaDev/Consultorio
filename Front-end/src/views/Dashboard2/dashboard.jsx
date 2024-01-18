@@ -1,13 +1,14 @@
 
 import { useEffect, useState } from "react";
 import MedicosTable from "./Medicos";
-import { FaUser, FaUserGraduate, FaList, FaPlus, FaNeuter } from 'react-icons/fa';
+import { FaUser, FaUserGraduate, FaList, FaPlus, FaNeuter, FaUserPlus } from 'react-icons/fa';
 import ClientesTable from "./ClientesTable";
 import CitasTable from "./Citas";
 import { useDispatch, useSelector } from "react-redux";
 import { allCitas, allClientes, allMedicos } from "../../redux/actions";
 import FormCitas from "./FormCitas";
 import { useSpring, animated } from 'react-spring';
+import AdminCreateForm from "./FormAmins";
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const [Clientes, setClientes] = useState(false);
   const [Medicos, setMedicos] = useState(false);
   const [FormularioCitas, setFormularioCitas] = useState(false)
+  const [FormularioAdmin, setFormularioAdmin] = useState(false)
   useEffect(()=>{
     dispatch(allMedicos())
     dispatch(allClientes())
@@ -46,40 +48,51 @@ const animatedStyle2 = useSpring({
     setClientes(false);
     setMedicos(false);
     setFormularioCitas(false)
- 
+    setFormularioAdmin(false)
 
 
-    setNavStyles(["bg-green-500 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200"]);
+    setNavStyles(["bg-green-500 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200"]);
   };
   const handleNav2 = () => {
     setCitas(false);
     setClientes(true);
     setMedicos(false);
     setFormularioCitas(false)
+    setFormularioAdmin(false)
 
 
-
-    setNavStyles([" text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "bg-green-500 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200"]);
+    setNavStyles([" text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "bg-green-500 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200"]);
   };
   const handleNav3 = () => {
     setClientes(false);
     setCitas(false);
     setFormularioCitas(false)
     setMedicos(true);
+    setFormularioAdmin(false)
   
-  
-    setNavStyles(["text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "bg-green-500 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200"]); // <-- Corregir el tercer elemento
+    setNavStyles(["text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "bg-green-500 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200"]); // <-- Corregir el tercer elemento
   };
   const handleNav4 = () => {
     setClientes(false);
     setCitas(false);
     setMedicos(false);
     setFormularioCitas(true)
+    setFormularioAdmin(false)
 
   
-    setNavStyles(["text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "bg-green-500 text-gray-900 w-10 h-10 rounded-full m-auto text-white"]); // <-- Corregir el tercer elemento
+    setNavStyles(["text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "bg-green-500 text-gray-900 w-10 h-10 rounded-full m-auto text-white", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200"]); // <-- Corregir el tercer elemento
   };
  
+  const handleNav5 = () => {
+    setClientes(false);
+    setCitas(false);
+    setMedicos(false);
+    setFormularioCitas(false)
+    setFormularioAdmin(true)
+
+  
+    setNavStyles(["text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "text-gray-900 w-10 h-10 rounded-full m-auto text-gray-200", "bg-green-500 text-gray-900 w-10 h-10 rounded-full m-auto text-white"]); // <-- Corregir el tercer elemento
+  };
 
 
 
@@ -113,6 +126,11 @@ const animatedStyle2 = useSpring({
             onClick={handleNav4}>
             <FaPlus/>
           </li>
+          <li
+            className={`text-lg font-bold my-20 flex justify-center p-3 cursor-pointer shadow-md transition duration-500 ${navStyles[4]} hover:bg-gray-300`}
+            onClick={handleNav5}>
+            <FaUserPlus/>
+          </li>
      
          
         </ul>
@@ -123,6 +141,7 @@ const animatedStyle2 = useSpring({
         {Clientes ? <ClientesTable /> : ""}
         {Medicos? <MedicosTable /> : ""}
         {FormularioCitas? <FormCitas/> : ""}
+        {FormularioAdmin? <AdminCreateForm/> : ""}
        
       </div>
     </div>

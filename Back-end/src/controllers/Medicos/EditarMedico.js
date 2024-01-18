@@ -15,9 +15,6 @@ module.exports = async (medicoId, dataToUpdate) => {
     // Actualizar los datos del cliente
     await medico.update(dataToUpdate);
 
-    // Concatenar "cli-" al ID del cliente actualizado
-    medico.dataValues.id = `medico-${medico.dataValues.id}`;
-    
 
     // Devolver el cliente actualizado
     return medico;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider,sendPasswordResetEmail, signInWithPopup } from "firebase/auth";
 import { firebaseAuth, firestore } from '../../utils/firebase-config';
 import { getFirestore, doc, setDoc } from 'firebase/firestore'
@@ -14,7 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import UserContext from '../../context/UserContext' 
 
 
-const LogIn = () => {
+
+const AdminLogin = () => {
 const { User } = useContext(UserContext) 
 console.log(User);
 const navigate = useNavigate();
@@ -33,7 +34,7 @@ const animatedStyle2 = useSpring({
 
 const resetPassword = (email) => sendPasswordResetEmail(firebaseAuth,email)
 const handleResetPassword = async () => {
-
+  const email = 'passantinodev@gmail.com'
 	try{
 	await resetPassword(email)
 	}
@@ -61,62 +62,8 @@ const handleLogin = async () => {
   }
 };
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/")
-   
-  });
-
-  const loginWithGoogle = () => {
-    const googleProvider = new GoogleAuthProvider()
-    signInWithPopup(firebaseAuth, googleProvider)
-    }
-
-  const handleGoogleLogin = async()=>{
-    try{
-    await loginWithGoogle().then(()=>{
-      toast.success('Inicio de sesion exitoso', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    })
-    }
-    catch(error){
-    console.log(error.message)
-    }
-  }
-
-  const loginWithGithub = () => {
-    const githubProvider = new GithubAuthProvider()
-    signInWithPopup(firebaseAuth, githubProvider)
-    }
 
 
-  const handleGithubLogin = async()=>{
-    try{
-    await loginWithGithub().then(()=>{
-      toast.success('Inicio de sesion exitoso', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    })
-    }
-    catch(error){
-    console.log(error.message)
-    }
-  }
-  
   return (
     <>
     <ToastContainer/>
@@ -125,33 +72,24 @@ const handleLogin = async () => {
           {/* Formulario */}
           <div className="col-span-6 w-full h-[100%] justify-center p-4 ">
           <animated.div style={animatedStyle1} id='form' className=''>
-          <div className='flex justify-center mt-10'>
+
+          <div id='top' className='text-center mt-[15%] justify-center'>
+          <div className='flex justify-center mt-10 mb-5'>
           <img src={logo} alt="logo" className='w-[400px] ml-4' />
           </div>
-          <div id='top' className='text-center mt-[4%] justify-center'>
-          <h4 className='font-semibold text-xl'>LOGIN</h4>
-          <p className='text-sm mb-4 text-gray-600'>Dental care, your favorite booking app.</p>
+          <h4 className='font-semibold text-xl'>ADMIN LOGIN</h4>
+          <p className='text-sm mb-4 text-gray-600'>Ingresa tus credenciales para acceder al panel de administrador</p>
           <input onChange={(e)=>setFormValues( {...formValues,email:e.target.value})} placeholder='Correo electronico' className='py-3 px-2 text-sm w-[65%] rounded-md bg-blue-50' type="text"/>
           <input onChange={(e)=>setFormValues({...formValues,password:e.target.value})} placeholder='Contraseña' className='py-3 px-2 w-[65%] text-sm rounded-md  bg-blue-50 mt-3' type="password"/>
           <p onClick={handleResetPassword} className='mt-4 text-sm font-medium text-green-500  hover:text-green-600 transition duration-1s cursor-pointer ease-in-out cursor-pointer'>Olvidaste tu contraseña?</p>
           </div>
 
 
-          <div id='bottom' className='text-center mb-[19%]  mt-[4%]'>
+          <div id='bottom' className='text-center mb-[19%]  mt-[2%]'>
           <button onClick={handleLogin} className='bg-green-400 hover:bg-green-600 transition duration-1s cursor-pointer ease-in-out text-white rounded-xl px-3 py-2 mb-3 font-medium'>Login Now</button>
        
-          <p className='mt-3 text-sm font-semibold text-gray-500'>No tienes una cuenta?</p>
-          <p onClick={()=> navigate('/signin')} className='text-sm mt-1 text-green-500  hover:text-green-600 transition duration-1s cursor-pointer ease-in-out cursor-pointer'>Registrate</p>
-          <p className='text-xs mt-2 text-gray-500'>o</p>
           <div className='flex justify-center'>
-          <button onClick={()=> handleGoogleLogin()} className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 mr-4 rounded-full'>
-            <img src={googleLogo} className='w-5 mx-1' alt="" />
-            Inicia sesion con Google
-            </button>
-          <button onClick={()=>handleGithubLogin()} className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 rounded-full'>
-            <img src={githubLogo} className='w-5 mx-1' alt="" />
-            Inicia sesion con Github
-            </button>
+        
           </div>
          
           </div>
@@ -177,4 +115,4 @@ const handleLogin = async () => {
   )
 }
 
-export default LogIn
+export default AdminLogin

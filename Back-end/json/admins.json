@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Admin 1",
+        "admin": "true",
+        "correo_electronico": "admin1@gmail.com",
+        "adminPassword": "password123"
+      },
+      {
+        "name": "Admin 2",
+        "admin": "true",
+        "correo_electronico": "admin2@gmail.com",
+        "adminPassword": "password123"
+      },
+      {
+        "name": "Admin 3",
+        "admin": "true",
+        "correo_electronico": "admin3@gmail.com",
+        "adminPassword": "password123"
+      }
+]

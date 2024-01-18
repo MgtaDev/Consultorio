@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
           allowNull: false
         },
         hora: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING,
           allowNull: true
         },
         clienteId: {
@@ -43,7 +43,16 @@ module.exports = (sequelize) => {
         descripcion: {
           type: DataTypes.STRING,
           allowNull: false
-        }
+        },
+        tipo_cita: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
+        datos_del_paciente: {
+          type: DataTypes.JSON,
+          allowNull: false
+        },
+   
     
       },
       { tableName: 'cita',timestamps: false }

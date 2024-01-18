@@ -18,11 +18,7 @@ module.exports = async (medicoData) => {
 
     // Si no existe un cliente con el mismo nombre, crear el nuevo cliente
     const newMedico = await Medico.create(medicoData);
-
-
-
-    newMedico.dataValues.id = `medico-${newMedico.dataValues.id}`;
-
+    newMedico.dataValues.id = newMedico.dataValues.id
     return newMedico
   } catch (error) {
     console.error('Error al agregar el medico', error);

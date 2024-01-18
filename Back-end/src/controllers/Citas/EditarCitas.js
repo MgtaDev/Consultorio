@@ -1,6 +1,6 @@
 const { Cita } = require('../../db');
 
-module.exports = async (citaId, descripcion) => {
+module.exports = async (citaId, descripcion, estado) => {
   try {
     // Buscar el cliente por su ID
     const cita = await Cita.findByPk(citaId);
@@ -13,11 +13,7 @@ module.exports = async (citaId, descripcion) => {
     }
 
     // Actualizar los datos del cliente
-    await cita.update({descripcion: descripcion});
-
-    // Concatenar "cli-" al ID del cliente actualizado
-    cita.dataValues.id = `cita-${cita.dataValues.id}`;
-    
+    await cita.update({descripcion: descripcion, estado: estado});
 
     // Devolver la cita actualizada
     return cita;

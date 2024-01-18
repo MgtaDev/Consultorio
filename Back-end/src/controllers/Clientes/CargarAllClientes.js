@@ -19,7 +19,7 @@ module.exports = async (clienteArray) => {
 
       // Si no existe un cliente con el mismo nombre, crear el nuevo cliente
       const newcliente = await Cliente.create(clienteData);
-      newcliente.dataValues.id = `usuario-${newcliente.dataValues.id}`;
+    
       clientes.push(newcliente);
 
 

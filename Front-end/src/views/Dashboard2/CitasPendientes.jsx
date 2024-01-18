@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CitasPendientes = () => {
     const dispatch = useDispatch()
-    const stateCitas = useSelector(state => state?.allCitas);
+    const stateCitas = useSelector((state) => state?.allCitas?.filter((cita) => cita.estado === 'pendiente'));
     useEffect(()=>{
       dispatch(allCitas())
   },[])

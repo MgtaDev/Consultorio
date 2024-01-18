@@ -1,18 +1,50 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../../assets/logo.png'
 import { useSpring, animated } from 'react-spring';
 import { FaArrowLeft, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import CitaContext from '../../context/CitaContext'
 
-const SchedulingForDetails = () => {
-
+const SchedulingForDetails = ({setCita}) => {
+  const { Cita } = useContext(CitaContext) 
+  console.log(Cita);
     const animatedStyle1= useSpring({
       from: { opacity: 0, },
       to: { opacity: 1, },
       delay: 500,
     });
     const navigate = useNavigate()
+
+    const loadClientName = (numero ) => {
+      const newClientData = { ...Cita.datos_del_paciente }; 
+      newClientData.nombre = numero; 
+      setCita({ ...Cita, datos_del_paciente: newClientData }); 
+    }
   
+    const loadClientLastName = (apellido ) => {
+      const newClientData = { ...Cita.datos_del_paciente }; 
+      newClientData.apellido = apellido; 
+      setCita({ ...Cita, datos_del_paciente: newClientData }); 
+    }
+
+    const loadClientBirth = (fecha_nacimiento) => {
+      const newClientData = { ...Cita.datos_del_paciente }; 
+      newClientData.fecha_nacimiento= fecha_nacimiento; 
+      setCita({ ...Cita, datos_del_paciente: newClientData }); 
+    }
+
+    const loadClientGender = (gender) => {
+      const newClientData = { ...Cita.datos_del_paciente }; 
+      newClientData.genero = gender; 
+      setCita({ ...Cita, datos_del_paciente: newClientData }); 
+    }
+
+    const loadClientDNI = ( DNI ) => {
+      const newClientData = { ...Cita.datos_del_paciente };
+      newClientData.cedula_identidad = DNI; 
+      setCita({ ...Cita, datos_del_paciente: newClientData });
+    }
+    
     return (
       <animated.div style={animatedStyle1} className='bg-white'>
         <div className='flex justify-center mt-10 mb-5'>
@@ -27,17 +59,19 @@ const SchedulingForDetails = () => {
         <div className='grid grid-cols-6'>
             <div className='col-span-2' id='form'>
             <label className='text-gray-700 font-bold mb-1' htmlFor="">Nombre del paciente</label>
-            <input type="text" className='border py-2 px-2  rounded-md ' />
+            <input onChange={(e)=> loadClientName(e.target.value)} type="text" className='border py-2 px-2  rounded-md ' />
             <label className='text-gray-700 font-bold mb-1 relative top-7' htmlFor="">Fecha de nacimiento</label>
-            <input type="text" className='border py-2 px-2  rounded-md mt-8' />
-            <p className='mt-4'>Eres el pader/mama o respresentante legal del paciente?</p>
+            <input onChange={(e)=> loadClientBirth(e.target.value)} type="text" className='border py-2 px-2  rounded-md mt-8' />
+            <label className='text-gray-700 font-bold mb-1 relative top-7' htmlFor="DNI">Cedula de identidad</label>
+            <input name='DNI' onChange={(e)=> loadClientDNI(e.target.value)} type="text" className='border py-2 px-2  rounded-md mt-8' />
+            <p className='mt-4'>Eres el padre/mama o respresentante legal del paciente?</p>
 
             </div>
             <div className='col-span-2' id='details'>
             <label className='text-gray-700 font-bold mb-1' htmlFor="">Apellido del paciente</label>
-            <input type="text" className='border py-2 px-2  rounded-md ' />
+            <input onChange={(e)=> loadClientLastName(e.target.value)} type="text" className='border py-2 px-2  rounded-md ' />
             <label className='text-gray-700 font-bold mb-1 relative top-7' htmlFor="">Genero</label>
-            <input type="text" className='border py-2 px-2  rounded-md mt-8' />
+            <input onChange={(e)=> loadClientGender(e.target.value)} type="text" className='border py-2 px-2  rounded-md mt-8' />
 
 
             </div>

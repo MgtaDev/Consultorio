@@ -21,7 +21,7 @@ module.exports = async (medicoId) => {
       throw error;
     }
 
-    medico.dataValues.id = `medico-${medico.dataValues.id}`;
+
 
     return medico;
   } catch (error) {

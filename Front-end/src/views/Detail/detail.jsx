@@ -14,7 +14,8 @@ const Detail = ({setHistorial, setDetalle, id, name, correo, cedula}) => {
           behavior: 'smooth'
         });
       }
-    
+    const ultimaCitaPendiente = useSelector((state) => state?.allCitas?.filter((cita) => cita.estado === 'pendiente')?.[state?.allCitas?.filter((cita) => cita.estado === 'pendiente')?.length - 1]);
+    console.log(ultimaCitaPendiente);
     const dispatch = useDispatch()
     const userCitas = useSelector(state => state.allCitas)
     const [currentPage, setCurrentPage] = useState(1)
@@ -94,19 +95,19 @@ const Detail = ({setHistorial, setDetalle, id, name, correo, cedula}) => {
 
             <div className="mb-2 flex">
                 <FaCalendarAlt className="mr-2" />
-                <p>21 de septiembre de 2021</p>
+                <p>{ultimaCitaPendiente.fecha}</p>
             </div>
             <div className="mb-2 flex">
                 <BsCheckCircle className="mr-2" />
-                <p className="text-green-500 font-semibold">Confirmada</p>
+                <p className="text-green-500 font-semibold">{ultimaCitaPendiente.estado}</p>
             </div>
             <div className="mb-2 flex">
                 <FaCalendarAlt className="mr-2" />
-                <p>10:00AM</p>
+                <p>{ultimaCitaPendiente.hora}</p>
             </div>
             <div className="mb-2 flex">
                 <FaUserCircle className="mr-2" />
-                <p className="font-semibold">Dr. Hernández</p>
+                <p className="font-semibold">{ultimaCitaPendiente.medico_name}</p>
             </div>
         </div>
     </div>

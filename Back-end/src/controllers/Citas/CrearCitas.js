@@ -1,6 +1,6 @@
 const { Cita } = require('../../db');
 
-module.exports = async ({clienteId, fecha, descripcion, medicoId, cliente_name, medico_name}) => {
+module.exports = async ({clienteId, fecha, descripcion, medicoId, cliente_name, medico_name, nombre, tipo_cita, apellido,email, numero, cedula_identidad, genero,fecha_nacimiento}) => {
     try {
 
    const nuevaCita = Cita.create({
@@ -10,7 +10,18 @@ module.exports = async ({clienteId, fecha, descripcion, medicoId, cliente_name, 
         clienteId,
         medicoId,
         medico_name,
-        cliente_name
+        cliente_name,
+        tipo_cita,
+        datos_del_paciente: {
+          nombre,
+          apellido,
+          email,
+          numero,
+          cedula_identidad,
+          genero,
+          fecha_nacimiento
+        }
+        
       })
 
       return nuevaCita

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { allCitas } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
@@ -8,9 +8,13 @@ import Loaction from '../../components/Location/location';
 import ReviewSlider from '../../components/ReviewsSlider/reviewsSlider';
 import Contact from '../../components/Contact/contact';
 import Hero from '../../assets/smiling.jpg'
+import UserContext from '../../context/UserContext';
+
 
 const Landing = () => {
   const dispatch = useDispatch();
+  const { User } = useContext(UserContext) 
+  console.log(User);
 
   useEffect(() => {
     dispatch(allCitas());
@@ -22,9 +26,7 @@ const Landing = () => {
     delay: 500,
   });
 
-  const [User, setUser] = useState({
-    
-  })
+
 
   return (
     <>
@@ -48,7 +50,7 @@ const Landing = () => {
               ¡Haz tu cita ahora!
             </button>
           </Link>
-          <Link to={'/admin/dashboard'}>
+          <Link to={User?.rol === 'admin' ? '/admin/dashboard' : '/admin-login' }>
             <button className='bg-green-700 mx-4 rounded-lg font-bold text-white py-2 px-10 mt-8 transition duration-300 hover:bg-green-800'>
               Soy admin
             </button>

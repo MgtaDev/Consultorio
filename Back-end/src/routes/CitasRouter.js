@@ -15,9 +15,9 @@ const putCitaCancelada = require('../controllers/Citas/PutCitaCancelada')
 
 // Ruta para crear una cita
   router.post('/', async (req, res) => {
-  const { fecha, descripcion, medicoId, clienteId, cliente_name, medico_name } = req.body;
+  const { fecha, descripcion, medicoId, clienteId, cliente_name, medico_name, tipo_cita, nombre, apellido, email, numero, cedula_identidad, genero, fecha_nacimiento } = req.body;
     try {
-      const nuevaCita = await createCita({clienteId,fecha,descripcion,medicoId,cliente_name, medico_name});
+      const nuevaCita = await createCita({clienteId,fecha,descripcion,medicoId,cliente_name, medico_name, tipo_cita, nombre, apellido, email, numero, cedula_identidad, genero, fecha_nacimiento});
       res.status(200).json(nuevaCita);
     } catch (error) {
       console.error('Error al crear una cita nueva', error.message);
@@ -28,9 +28,9 @@ const putCitaCancelada = require('../controllers/Citas/PutCitaCancelada')
   // Ruta para editar los datos de la cita
   router.put('/:citaId', async (req, res) => {
     const { citaId } = req.params;
-    const { descripcion } = req.body;
+    const { descripcion, estado } = req.body;
     try {
-      const updatedCita = await updateCita( citaId,descripcion);
+      const updatedCita = await updateCita( citaId,descripcion, estado);
       res.status(200).json(updatedCita);
     } catch (error) {
       console.error('Error al editar la cita', error.message);

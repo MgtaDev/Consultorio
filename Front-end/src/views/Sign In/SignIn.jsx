@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import axios from 'axios'
 import { onAuthStateChanged, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, GithubAuthProvider } from "firebase/auth";
-import { firebaseAuth } from '../../utils/firebase-config';
+import { firebaseAuth, firestore } from '../../utils/firebase-config';
+import { getFirestore, doc, setDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom';
 import googleLogo from '../../assets/google-logo.png'
 import githubLogo from '../../assets/github-logo.png'
@@ -8,12 +10,12 @@ import logo from '../../assets/logo.png'
 import { useSpring, animated } from 'react-spring'
 import { ToastContainer, toast } from 'react-toastify';
 import img from '../../assets/od.jpeg'
-import 'react-toastify/dist/ReactToastify.css';;
-//Importamos GoogleAuthProvider de 'firebase/auth' y signInWithPopup para mostrar ventana de seleccion de cuenta al usuario 
+import 'react-toastify/dist/ReactToastify.css';import CitaContext from '../../context/CitaContext';
+;
 
 
 
-const SignIn = () => {
+const SignIn = ({setCita, setUser}) => {
 
 const navigate = useNavigate()
 
@@ -28,25 +30,36 @@ const animatedStyle2 = useSpring({
   delay: 500,
 });
 
+const { Cita } = useContext(CitaContext) 
+  console.log(Cita);
+
+
 
 const registrarUsuario = async () => {
-  const { email, password } = formValues;
+  const { email, password, name } = formValues;
+  const clientDb = {
+    email: email,
+    correo_electronico: email,
+    name: name,
+    rol: "user",
+  }
   try {
     const infoUsuario = await createUserWithEmailAndPassword(firebaseAuth, email, password)
-    .then((usuarioFirebase) => {
-      return usuarioFirebase
-      }).then(()=>{
-        toast.success('Registrado exitosamente', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+    const cliente = await axios.post('http://localhost:3001/cliente', clientDb)
+    
+      setCita({
+        ...Cita, 
+        cliente_name: cliente.data.name,
+        clienteId: cliente.data.id
       })
+      setUser({
+        correo_electronico: cliente.correo_electronico,
+        name: cliente.name,
+        rol: "user",
+        id: cliente.id
+        })
+      
+      
   } catch (error) {
     console.log(error);
   }
@@ -61,70 +74,79 @@ const registrarUsuario = async () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
+    name: "",
   });
   console.log(formValues);
 
-  const loginWithGoogle = () => {
+  const loginWithGoogle = async () => {
+    const { email, password, name } = formValues;
+    const clientDb = {
+      email: email,
+      correo_electronico: email,
+      name: name,
+      rol: "user",
+    }
     const googleProvider = new GoogleAuthProvider()
-    signInWithPopup(firebaseAuth, googleProvider)
+    await signInWithPopup(firebaseAuth, googleProvider)
+    const cliente = await axios.post('http://localhost:3001/cliente', clientDb)
+      setUser({
+        correo_electronico: cliente.correo_electronico,
+        name: cliente.name,
+        rol: "user",
+        id: cliente.id
+        })
+        setCita({
+          ...Cita, 
+          cliente_name: cliente.name,
+          clienteId: cliente.id
+        })
+      
     }
 
-    const loginWithGithub = () => {
+    const loginWithGithub = async () => {
+      const { email, password, name } = formValues;
+      const clientDb = {
+        correo_electronico: email,
+        name: name,
+        rol: "user",
+      }
       const githubProvider = new GithubAuthProvider()
-      signInWithPopup(firebaseAuth, githubProvider)
+      await signInWithPopup(firebaseAuth, githubProvider)
+      const cliente = await axios.post('http://localhost:3001/cliente', clientDb)
+      setUser({
+        correo_electronico: cliente.correo_electronico,
+        name: cliente.name,
+        rol: "user",
+        id: cliente.id
+        })
+        setCita({
+          ...Cita, 
+          cliente_name: cliente.name,
+          clienteId: cliente.id
+        })
+    
+      
       }
   
-
-  const handleGoogleSignIn = async()=>{
-    try{
-    await loginWithGoogle().then(()=>{
-      toast.success('Registrado exitosamente', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    })
-    }
-    catch(error){
-    console.log(error.message)
-    }
-  }
-
-  const handleGithubSignIn = async()=>{
-    try{
-    await loginWithGithub().then(()=>{
-      toast.success('Registrado exitosamente', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    })
-    }
-    catch(error){
-    console.log(error.message)
-    }
-  }
 
   return (
     <div className="grid grid-cols-12 bg-white">
     {/* Formulario */}
     <div className="col-span-6 w-full h-[100%] justify-center p-4 ">
     <animated.div style={animatedStyle1} id='form' className=''>
-
-    <div id='top' className='text-center mt-[7%] justify-center'>
+    <div className='flex justify-center mt-10'>
+          <img src={logo} alt="logo" className='w-[400px] ml-4' />
+          </div>
+    <div id='top' className='text-center mt-[4%] justify-center'>
     <h4 className='font-semibold text-xl'>REGISTRATE</h4>
     <p className='text-sm mb-4 text-gray-600'>Dental care, your favorite booking app.</p>
-    <input placeholder='Nombre' className='py-3 px-2 text-sm w-[65%] rounded-md bg-blue-50' type="text"/>
+    <input onChange={(e) =>
+                  setFormValues({
+                    ...formValues,
+                    name: e.target.value,
+                  })
+                }
+                  placeholder='Nombre' className='py-3 px-2 text-sm w-[65%] rounded-md bg-blue-50' type="text"/>
     <input placeholder='Correo electronico' className='py-3 px-2 text-sm w-[65%] rounded-md bg-blue-50 mt-3' type="text"/>
     <input placeholder='Contraseña' className='py-3 px-2 w-[65%] text-sm rounded-md  bg-blue-50 mt-3' type="password"/>
     <input  onChange={(e) =>
@@ -147,11 +169,11 @@ const registrarUsuario = async () => {
     <button onClick={registrarUsuario} className='bg-green-400 hover:bg-green-600 transition duration-1s cursor-pointer ease-in-out text-white rounded-xl px-3 py-2 mb-3 font-medium'>Crear Cuenta</button>
     <ToastContainer/>
     <div className='flex justify-center'>
-    <button  onClick={()=>handleGoogleSignIn()} className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 mr-4 rounded-full'>
+    <button  onClick={()=>loginWithGoogle()} className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 mr-4 rounded-full'>
       <img src={googleLogo} className='w-5 mx-1' alt="" />
       Inicia sesion con Google
       </button>
-    <button onClick={()=>handleGithubSignIn()}  className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 rounded-full'>
+    <button onClick={()=>loginWithGithub()}  className='flex items-center px-4 py-2 shadow shadow-lg text-gray-700 text-sm mt-2 rounded-full'>
       <img src={githubLogo} className='w-5 mx-1' alt="" />
       Inicia sesion con Github
       </button>

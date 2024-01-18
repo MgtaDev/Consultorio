@@ -11,12 +11,19 @@ const clientesJson = require('./json/cliente.json')
 const cargarMedicos = require('./src/controllers/Medicos/CargarAllMedicos')
 const medicosJson = require('./json/medicos.json')
 
+//Administradores
+const cargarAdmins = require('./src/controllers/Admins/cargarAllAdmins')
+const adminsJson = require('./json/admins.json')
+
 async function loadData (){
 await cargarClientes(clientesJson)
 console.log('Clientes sincronizados')
 
 await cargarMedicos(medicosJson)
 console.log('Medicos sincronizados')
+
+await cargarAdmins(adminsJson)
+console.log('Admministradores sincronizados')
 }
 
 async function startServer() {

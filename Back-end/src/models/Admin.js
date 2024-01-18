@@ -1,10 +1,7 @@
-// Este modelo tiene una relación muchos a uno tanto con el modelo Usuario 
-// como con el modelo Médico.
-
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    const Cliente = sequelize.define('Cliente', {
+    const Admin = sequelize.define('Admin', {
         id:{
           type: DataTypes.INTEGER,
           allowNull: false,
@@ -15,40 +12,24 @@ module.exports = (sequelize) => {
           type: DataTypes.STRING,
           allowNull: false
         },
-        telefono: {
-          type: DataTypes.STRING,
-          allowNull: true,
-        },
         correo_electronico: {
           type: DataTypes.STRING,
           allowNull: false,
           unique: true,
         },
-        direccion: {
+        contraseña: {
           type: DataTypes.STRING,
           allowNull: true,
         },
-        activa: {
+        admin: {
           type: DataTypes.BOOLEAN,
           allowNull: true,
           defaultValue: true,
         },
-        cedula_identidad: {
-          type: DataTypes.STRING,
-          allowNull: true
-        },
-
-
 
       },
-      { tableName: 'cliente',timestamps: false }
+      { tableName: 'admin', timestamps: false }
       );
 
-      Cliente.associate = function(models) {
-        Cliente.hasMany(models.Cita, {
-          foreignKey: 'clienteId'
-        });
-      };
-
-  return Cliente;
+  return Admin;
 };

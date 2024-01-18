@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import logo from '../../assets/logo.png'
 import maps from '../../assets/maps.png'
 import locationMark from '../../assets/locationMark.png'
@@ -10,10 +10,13 @@ import {FaCalendar, FaUser} from 'react-icons/fa'
 import Modal from "react-modal";
 import { useDispatch, useSelector } from 'react-redux'
 import { allCitas, allMedicos } from '../../redux/actions'
+import CitaContext from '../../context/CitaContext'
 
 
 Modal.setAppElement("#root");
-const ChooseYourappointment = () => {
+const ChooseYourappointment = ({setCita}) => {
+  const { Cita } = useContext(CitaContext) 
+  console.log(Cita);
 
     const horas = [
       '1:00pm',
@@ -24,6 +27,17 @@ const ChooseYourappointment = () => {
       '6:00pm',
       '7:00pm',
     ]
+    const fechas = [
+      '10/01/2024',
+      '11/01/2024',
+      '12/01/2024',
+      '13/01/2024',
+      '14/01/2024',
+      '15/01/2024',
+      '16/01/2024',
+      '17/01/2024',
+    ]
+
 
     const [showHours, setshowHours] = useState(false)
     const [showDate, setshowDate] = useState(false)
@@ -41,6 +55,25 @@ const ChooseYourappointment = () => {
         dispatch(allMedicos())
         dispatch(allCitas())
     },[])
+
+    const loadHora = (hora) => {
+      navigate('/scheduling-for')
+      setCita({
+        ...Cita,
+        hora: hora
+      })
+    }
+
+    const loadFecha = (fecha, medico_name, medicoId) => {
+      setshowHours(true)
+      setCita({
+        ...Cita,
+        fecha: fecha,
+        medico_name: medico_name,
+        medicoId: medicoId
+      })
+    }
+
     const [value, onChange] = useState(new Date());
     const animatedStyle1 = useSpring({
         from: { opacity: 0, marginLeft: -200 },
@@ -71,6 +104,9 @@ const ChooseYourappointment = () => {
         },
       };
 
+
+
+
   return (
 
     // Main container
@@ -82,7 +118,7 @@ const ChooseYourappointment = () => {
     <div className="col-span-6 elemento w-full h-full justify-center ">
     <animated.div style={animatedStyle2}>
     <div className='flex w-full py-4 px-5  bg-gray-100'>
-        <p className='text-xs relative left-[26%]'>Estos intervalos de tiempo estan en la zona horaria <span className='font-bold'>Centra Standard Timer 4:52 PM</span></p>
+        <p className='text-xs relative left-[24%]'>Estos intervalos de tiempo estan en la zona horaria <span className='font-bold'>Centra Standard Timer 4:52 PM</span></p>
     </div>
     <div className='mx-5 flex flex justify-center my-7 py-2 px-3 h-8 items-center'>
          <img src={logo} className='w-[300px] relative -top-8 mt-40' alt="" />
@@ -149,10 +185,11 @@ const ChooseYourappointment = () => {
                         showHours ? 
                         (
                           horas.map((hora)=>(
-                            <button onClick={()=> navigate('/scheduling-for')} className='my-2 rounded-full text-sm bg-gray-100 border-2 mx-2 relative left-10 px-4 py-2'>{hora}</button>
+                            <button onClick={()=> loadHora(hora)} className='my-2 rounded-full text-sm bg-gray-100 border-2 mx-2 relative left-10 px-4 py-2'>{hora}</button>
                           ))
                         )
-                        :<button onClick={()=> setshowHours(true)} className='my-2 rounded-full text-sm bg-gray-200  px-4 py-2'>Siguiente disponibilidad: <span className='font-bold text-xs'>Lun, Diciembre 25</span> </button>
+                        : 
+                          <button onClick={(e)=> loadFecha(e.target.value, medico.name, medico.id)} value='11/01/2024' className='my-2 rounded-full text-sm bg-gray-200  px-4 py-2'>Siguiente disponibilidad: <span className='font-bold text-xs'>11/01/2024</span></button>
                         
                       }
                     </div>
